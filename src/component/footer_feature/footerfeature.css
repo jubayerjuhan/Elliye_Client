@@ -1,0 +1,61 @@
+.footerfeature__container {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: (1fr)[4];
+      grid-template-columns: repeat(4, 1fr);
+  grid-gap: 2rem;
+  padding-bottom: 4rem;
+  background-color: #f6f7fb;
+  margin-top: 6rem;
+}
+
+.footerfeature__content {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.footerfeature__content svg {
+  font-size: 4rem;
+  margin-right: 2rem;
+  color: var(--theme-blue);
+}
+
+.footerfeature__content h6 {
+  font-family: var(--font-family);
+  font-style: normal;
+  font-weight: bold;
+  font-size: 18px;
+  line-height: 27px;
+  color: var(--theme-blue);
+  margin-bottom: 0.4rem;
+}
+
+.footerfeature__content p {
+  font-family: var(--font-family);
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 22px;
+}
+
+@media screen and (max-width: 1000px) {
+  .footerfeature__container {
+    -ms-grid-columns: (1fr)[2];
+        grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .footerfeature__container {
+    -ms-grid-columns: 1fr;
+        grid-template-columns: 1fr;
+  }
+}
+/*# sourceMappingURL=footerfeature.css.map */

@@ -1,0 +1,39 @@
+.pagination__container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 4rem 0;
+}
+
+.pagination_number,
+.pagination__nav-btn {
+  cursor: pointer;
+  margin: 0 5px;
+  border-radius: 5px;
+  outline: none;
+  font-family: var(--font-family);
+  background-color: #fff;
+  border: none;
+
+  display: grid;
+  place-items: center;
+  padding: 10px 20px;
+  height: 100%;
+  transition: all 0.5s;
+  svg {
+    font-size: 16px;
+  }
+
+  .pagination_number {
+    border: none;
+  }
+
+  &:hover {
+    background-color: var(--theme-blue);
+    color: #fff;
+  }
+}
+
+.pagination_number {
+  border: 1px solid var(--theme-blue);
+}

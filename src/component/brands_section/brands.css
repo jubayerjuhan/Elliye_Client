@@ -1,0 +1,37 @@
+.brands__container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
+
+.brands__container .brands__img {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  height: auto;
+  margin: 0 2rem;
+}
+
+.brands__container .brands__img img {
+  max-width: 100px;
+  height: auto;
+}
+
+@media screen and (max-width: 700px) {
+  .brands__container .brands__img img {
+    margin-top: 1rem;
+    max-width: 70px;
+  }
+}
+/*# sourceMappingURL=brands.css.map */

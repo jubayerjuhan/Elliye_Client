@@ -1,0 +1,28 @@
+.brands__container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  .brands__img {
+    display: flex;
+    align-items: center;
+    height: auto;
+    margin: 0 2rem;
+
+    img {
+      max-width: 100px;
+      height: auto;
+    }
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .brands__container {
+    .brands__img {
+      img {
+        margin-top: 1rem;
+        max-width: 70px;
+      }
+    }
+  }
+}

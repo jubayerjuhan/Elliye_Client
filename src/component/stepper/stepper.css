@@ -1,0 +1,15 @@
+.label__labelp {
+  font-family: var(--font-family);
+}
+
+.MuiStepLabel-iconContainer div {
+  height: 40px !important;
+  width: 40px !important;
+  -webkit-transform: translateY(10%);
+          transform: translateY(10%);
+}
+
+.MuiStepLabel-iconContainer div svg {
+  font-size: 20px !important;
+}
+/*# sourceMappingURL=stepper.css.map */

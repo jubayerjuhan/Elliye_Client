@@ -1,0 +1,135 @@
+.footer__container {
+  background-color: var(--theme-blue);
+  display: grid;
+  grid-template-columns: 3fr 7fr;
+  padding-bottom: 4rem;
+}
+
+.footer__right-section {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 2rem;
+}
+
+.footer__right-section_links-container,
+.footer__right-section_newsletter {
+  font-family: var(--font-family);
+  display: flex;
+  flex-direction: column;
+  color: #fff;
+  h5 {
+    padding-bottom: 1rem;
+    font-weight: bold;
+    font-size: 20px;
+    line-height: 36px;
+  }
+
+  p,
+  a {
+    font-size: 15px;
+    line-height: 30px;
+    color: var(--color-primary);
+  }
+}
+.footerEmailInput {
+  display: flex;
+  margin: 1rem 0;
+
+  input[type="email"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid white;
+    background-color: var(--theme-blue);
+    outline: none;
+
+    font-family: var(--font-family);
+    font-size: 14px;
+    line-height: 22px;
+    letter-spacing: 0.02em;
+    color: var(--color-primary);
+    border-right: none;
+    border-radius: 5px 0px 0px 5px;
+  }
+
+  button {
+    padding: 15px 20px;
+    border: 1px solid white;
+    outline: none;
+    border-radius: 0px 5px 5px 0px;
+
+    svg {
+      font-size: 1.2rem;
+    }
+  }
+}
+
+.footer__right-section_newsletter {
+  p {
+    line-height: 20px;
+    font-size: 14px;
+  }
+}
+
+.footer__left-section {
+  svg {
+    color: white !important;
+  }
+  color: white;
+}
+.contacts__wrapper {
+  display: flex;
+  align-items: center;
+  svg {
+    margin-right: 1rem;
+  }
+}
+
+.footer__left-section-contact,
+.footer__left-section_socialMedia {
+  margin-top: 1rem;
+  h5 {
+    padding-bottom: 0.4rem;
+    font-weight: bold;
+    font-size: 20px;
+    line-height: 36px;
+
+    font-family: var(--font-family);
+  }
+
+  p {
+    font-size: 15px;
+    line-height: 30px;
+    color: var(--color-primary);
+    font-family: var(--font-family);
+  }
+
+  .socialMediaContainer {
+    display: flex;
+    width: 50%;
+    align-items: center;
+    justify-content: space-between;
+    svg {
+      font-size: 2rem;
+    }
+  }
+}
+
+@media screen and (max-width: 1000px) {
+  .footer__container {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .footer__right-section {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .footer__container {
+    grid-template-columns: 1fr;
+  }
+
+  .footer__right-section {
+    margin-top: 2rem;
+  }
+}

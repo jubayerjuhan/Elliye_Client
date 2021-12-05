@@ -1,0 +1,43 @@
+.hotsection__container {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: (1fr)[2];
+      grid-template-columns: repeat(2, 1fr);
+  grid-gap: 2rem;
+}
+
+.hotsection__new-arrival_products,
+.hotsection__popular-week_products {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: (1fr)[2];
+      grid-template-columns: repeat(2, 1fr);
+  grid-gap: 1rem;
+}
+
+.hotsection__title {
+  font-family: var(--font-family);
+  font-style: normal;
+  font-weight: bold;
+  font-size: 36px;
+  line-height: 54px;
+  margin-bottom: 2rem;
+  color: var(--theme-blue);
+}
+
+@media screen and (max-width: 1000px) {
+  .hotsection__container {
+    -ms-grid-columns: 1fr;
+        grid-template-columns: 1fr;
+  }
+  .hotsection__new-arrival,
+  .hotsection__popular-week {
+    margin-bottom: 1rem;
+  }
+  .hotsection__new-arrival_products,
+  .hotsection__popular-week_products {
+    -ms-grid-columns: 1fr;
+        grid-template-columns: 1fr;
+  }
+}
+/*# sourceMappingURL=hotsection.css.map */

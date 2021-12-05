@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAAA,AAAA,uBAAuB,CAAC;EACtB,UAAU,EAAE,KAAK;EACjB,OAAO,EAAE,IAAI;EACb,WAAW,EAAE,MAAM;EACnB,SAAS,EAAE,KAAK;EAChB,OAAO,EAAE,IAAI;EACb,aAAa,EAAE,GAAG;EAClB,MAAM,EAAE,cAAc;EACtB,gBAAgB,EAAE,KAAK;EACvB,QAAQ,EAAE,QAAQ;EAClB,OAAO,EAAE,MAAM;EACf,KAAK,EAAE,IAAI;CACZ",
+    "sources": [
+        "errordialog.scss"
+    ],
+    "names": [],
+    "file": "errordialog.css"
+}

@@ -1,0 +1,124 @@
+.productlist__content__title {
+  text-align: center;
+  font-weight: bold;
+  font-size: 30px;
+  line-height: 44px;
+  margin-bottom: 2rem;
+  color: var(--theme-blue);
+}
+
+.productlist__content {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 2fr 10fr;
+      grid-template-columns: 2fr 10fr;
+  grid-gap: 1rem;
+}
+
+.filter__category {
+  width: 100%;
+}
+
+.filter__category select {
+  margin: 0.5rem 0;
+  width: 90%;
+  height: 50px;
+  border: 1px solid var(--theme-blue);
+  padding: 0 5px;
+  border-radius: 5px;
+  outline: none;
+}
+
+.filter__price {
+  width: 90%;
+  margin: 2rem 0;
+}
+
+.filter__price p {
+  margin-bottom: 0.5rem;
+}
+
+.filter__price .css-187mznn-MuiSlider-root {
+  color: var(--theme-blue);
+}
+
+.review__checkbox {
+  margin: 0.5rem 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.review__checkbox input {
+  margin-right: 0.5rem;
+}
+
+.review__checkbox svg {
+  color: var(--theme-blue);
+  font-size: 1.4rem;
+}
+
+.filter__price p,
+.filter__category p,
+.filter__review p {
+  margin-bottom: 0.4rem;
+}
+
+.show_filters {
+  display: none;
+}
+
+.productlist__all-products {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: (1fr)[4];
+      grid-template-columns: repeat(4, 1fr);
+  place-items: center;
+  grid-gap: 1rem;
+}
+
+@media (max-width: 1000px) {
+  .productlist__all-products {
+    -ms-grid-columns: (1fr)[2];
+        grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 700px) {
+  .show_filters {
+    display: block;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    margin: 1rem 0;
+    border: 1px solid var(--theme-blue);
+    padding: 0.5rem 1rem;
+    width: -webkit-fit-content;
+    width: -moz-fit-content;
+    width: fit-content;
+    cursor: pointer;
+  }
+  .show_filters svg {
+    margin-right: 0.4rem;
+    font-size: 1.3rem;
+    color: var(--theme-blue);
+  }
+  .productlist__all-products {
+    -ms-grid-columns: 1fr;
+        grid-template-columns: 1fr;
+  }
+  .productlist__content {
+    -ms-grid-columns: 1fr;
+        grid-template-columns: 1fr;
+  }
+  .productlist__content .productlist__filter {
+    display: none;
+  }
+}
+/*# sourceMappingURL=productlist.css.map */
