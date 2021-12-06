@@ -24,6 +24,14 @@
           align-items: center;
 }
 
+.navbar__container-top svg {
+  cursor: pointer;
+}
+
+.navbar__container-top img {
+  cursor: pointer;
+}
+
 .navbar__searchbar {
   width: 500px;
   height: 48px;
@@ -117,12 +125,74 @@
   margin: 1rem 0;
 }
 
+.navbar__container-menu svg {
+  cursor: pointer;
+}
+
+.navbar__container-menu img {
+  cursor: pointer;
+}
+
 .navbar__container-menu a {
   margin: 0 1.5rem;
   font-family: var(--font-family);
   font-size: 18px;
   line-height: 27px;
   color: var(--theme-blue);
+}
+
+.userbar__container {
+  position: absolute;
+  right: 6rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 1.4rem;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-transform: translateY(50%) translateX(0%);
+          transform: translateY(50%) translateX(0%);
+  z-index: 9999;
+  background-color: #ffffff;
+  min-width: 200px;
+  min-height: -webkit-fit-content;
+  min-height: -moz-fit-content;
+  min-height: fit-content;
+  -webkit-box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+          box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 16px;
+}
+
+.userbar__container a {
+  font-family: var(--font-family);
+  font-size: 18px;
+  line-height: 27px;
+  color: var(--theme-blue);
+  padding-bottom: 10px;
+}
+
+.userbar__container button {
+  cursor: pointer;
+  border-radius: 5px;
+  margin-top: 10px;
+  padding: 0.7rem 1.5rem;
+  font-family: var(--font-family);
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 21px;
+  background-color: var(--theme-blue);
+  color: #ffffff;
+  border: none;
+  outline: none;
 }
 
 @media screen and (max-width: 1000px) {

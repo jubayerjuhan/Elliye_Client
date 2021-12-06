@@ -26,6 +26,8 @@ export const registerUserReducer = (state = {}, action) => {
         ...state,
         loading: false,
         user: action.payload,
+        isloggedin: true,
+
       };
     case "REGISTER_USER_REJECTED":
     case "LOAD_USER_REJECTED":

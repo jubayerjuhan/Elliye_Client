@@ -7,6 +7,7 @@ import { Link } from "react-router-dom";
 import { Twirl as Hamburger } from "hamburger-react";
 import { FaRegUserCircle } from "react-icons/fa";
 import { useSelector } from "react-redux";
+import { toastSuccess } from "./../../utils/toastify";
 export const Menu = () => (
   <>
     <Link to="#newarrivals">New Arrivals</Link>
@@ -22,6 +23,13 @@ const Navbar = () => {
   console.log(isOpen);
   const { isloggedin } = useSelector((state) => state.user);
   console.log(isloggedin, "lgd");
+  const [userbar, setUserbar] = React.useState(false);
+
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    window.location.reload();
+    toastSuccess("Logout Successfully");
+  };
 
   return (
     <>
@@ -55,9 +63,11 @@ const Navbar = () => {
               <FaOpencart />
             </Link>
             {isloggedin === true ? (
-              <FaRegUserCircle />
+              <FaRegUserCircle onClick={() => setUserbar(!userbar)} />
             ) : (
-              <button className="navbar__sign-in  btn-primary">Login</button>
+              <Link to="/login">
+                <button className="navbar__sign-in  btn-primary">Login</button>
+              </Link>
             )}
             <div
               className={
@@ -70,7 +80,14 @@ const Navbar = () => {
             </div>
           </div>
         </div>
-        <div className="navbar__container-menu">
+        {userbar && (
+          <div className="userbar__container fade-in">
+            <Link to="/orders">Orders</Link>
+            <Link to="/profile">Profile</Link>
+            <button onClick={handleLogout}>Logout</button>
+          </div>
+        )}
+        <div className="navbar__container-menu ">
           <Menu></Menu>
         </div>
       </div>

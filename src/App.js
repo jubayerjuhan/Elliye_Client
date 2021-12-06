@@ -18,7 +18,9 @@ import { loadUser } from './actions/userActions.js';
 function App() {
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(loadUser());
+    if (localStorage.getItem('token')) {
+      dispatch(loadUser());
+    }
   }, [dispatch]);
   return (
     <div className="App">
