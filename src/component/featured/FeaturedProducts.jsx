@@ -82,7 +82,7 @@ const FeaturedProducts = () => {
         </div>
         <div className="fp__products">
           {products.map((product, i) => (
-            <Link to={`/products/${product.name}`}>
+            <Link key={i} to={`/products/${product.name}`}>
               <ProductcardPrimary product={product} />
             </Link>
           ))}

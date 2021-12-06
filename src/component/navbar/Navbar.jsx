@@ -21,6 +21,7 @@ const Navbar = () => {
   const [isOpen, setOpen] = React.useState(false);
   console.log(isOpen);
   const { isloggedin } = useSelector((state) => state.user);
+  console.log(isloggedin, "lgd");
 
   return (
     <>
@@ -53,10 +54,10 @@ const Navbar = () => {
             <Link to="/cart">
               <FaOpencart />
             </Link>
-            {isloggedin ? (
-              <button className="navbar__sign-in  btn-primary">Login</button>
-            ) : (
+            {isloggedin === true ? (
               <FaRegUserCircle />
+            ) : (
+              <button className="navbar__sign-in  btn-primary">Login</button>
             )}
             <div
               className={

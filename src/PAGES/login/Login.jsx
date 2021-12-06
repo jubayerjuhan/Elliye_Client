@@ -5,7 +5,10 @@ import Footer from "../../component/footer/Footer.jsx";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { loadUser, loginUser } from "../../actions/userActions.js";
+import { useDispatch, useSelector } from "react-redux";
+import { toastError, toastSuccess } from "../../utils/toastify.js";
 
 const schema = yup.object({
   email: yup
@@ -18,6 +21,8 @@ const schema = yup.object({
 });
 
 const Login = () => {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
   const {
     register,
     handleSubmit,
@@ -25,8 +30,21 @@ const Login = () => {
   } = useForm({ resolver: yupResolver(schema) });
 
   const onSubmit = (data) => {
-    console.log(data);
+    dispatch(loginUser(data));
   };
+
+  const { error, success } = useSelector((state) => state.user);
+
+  if (error) {
+    toastError(error);
+    dispatch({ type: "CLEAR_ERROR" });
+  }
+
+  if (success) {
+    toastSuccess("Login Successful");
+    dispatch({ type: "CLEAR_SUCCESS" });
+    navigate("/");
+  }
   return (
     <>
       <Navbar />

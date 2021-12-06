@@ -9,7 +9,8 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { useDispatch, useSelector } from "react-redux";
 import { registerUser } from "./../../actions/userActions";
 import Errordialog from "../../component/errordialog/Errordialog.jsx";
-
+import { showToast, toastError, toastSuccess } from "../../utils/toastify.js";
+import { useNavigate } from "react-router-dom";
 const schema = yup.object({
   name: yup.string().required("Name is required"),
   email: yup
@@ -25,7 +26,8 @@ const schema = yup.object({
 });
 
 const Signup = () => {
-  const { success } = useSelector((state) => state.user);
+  const navigate = useNavigate();
+  const { success, error } = useSelector((state) => state.user);
   const dispatch = useDispatch();
   const {
     register,
@@ -38,9 +40,13 @@ const Signup = () => {
     dispatch(registerUser(data));
   };
   if (success) {
-    setTimeout(() => {
-      dispatch({ type: "RESET_SUCCESS" });
-    }, 3000);
+    toastSuccess("Registered Successfully");
+    dispatch({ type: "RESET_SUCCESS" });
+    navigate("/");
+  }
+  if (error) {
+    toastError(error);
+    dispatch({ type: "CLEAR_ERROR" });
   }
   return (
     <>
