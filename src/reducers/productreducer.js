@@ -27,3 +27,67 @@ export const productreducer = (state = {}, action) => {
       return state;
   }
 }
+
+// get all products
+export const allProductsReducer = (state = {}, action) => {
+  switch (action.type) {
+    case 'ALL_PRODUCTS_PENDING':
+      return {
+        ...state,
+        loading: true,
+      }
+    case 'ALL_PRODUCTS_FULFILLED':
+      return {
+        ...state,
+        loading: false,
+        success: true,
+        products: action.payload,
+      }
+    case "RESET_SUCCESS":
+      return {
+        ...state,
+        success: null,
+      }
+    case 'ALL_PRODUCTS_REJECTED':
+      return {
+        ...state,
+        loading: false,
+        error: action.payload,
+      }
+
+    default:
+      return state;
+  }
+}
+
+// get single product
+export const getSingleProduct = (state = {}, action) => {
+  switch (action.type) {
+    case 'SINGLE_PRODUCT_PENDING':
+      return {
+        ...state,
+        loading: true,
+      }
+    case 'SINGLE_PRODUCT_FULFILLED':
+      return {
+        ...state,
+        loading: false,
+        success: true,
+        product: action.payload,
+      }
+    case "RESET_SUCCESS":
+      return {
+        ...state,
+        success: null,
+      }
+    case 'SINGLE_PRODUCT_REJECTED':
+      return {
+        ...state,
+        loading: false,
+        error: action.payload,
+      }
+
+    default:
+      return state;
+  }
+}

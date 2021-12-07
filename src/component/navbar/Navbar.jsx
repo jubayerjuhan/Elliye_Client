@@ -6,8 +6,10 @@ import "./navbar.css";
 import { Link } from "react-router-dom";
 import { Twirl as Hamburger } from "hamburger-react";
 import { FaRegUserCircle } from "react-icons/fa";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { toastSuccess } from "./../../utils/toastify";
+import { useNavigate } from "react-router-dom";
+import { getallProducts } from "../../actions/productactions.js";
 export const Menu = () => (
   <>
     <Link to="#newarrivals">New Arrivals</Link>
@@ -19,7 +21,10 @@ export const Menu = () => (
   </>
 );
 const Navbar = () => {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
   const [isOpen, setOpen] = React.useState(false);
+  const [keyword, setKeyword] = React.useState("");
   console.log(isOpen);
   const { isloggedin } = useSelector((state) => state.user);
   console.log(isloggedin, "lgd");
@@ -29,6 +34,16 @@ const Navbar = () => {
     localStorage.removeItem("token");
     window.location.reload();
     toastSuccess("Logout Successfully");
+  };
+
+  const handleChange = (e) => {
+    setKeyword(e.target.value);
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    navigate("/products");
+    dispatch(getallProducts(keyword));
   };
 
   return (
@@ -52,10 +67,17 @@ const Navbar = () => {
           </div>
 
           <div className="navbar__searchbar">
-            <input type="search" placeholder="Search" />
-            <button>
-              <BiSearchAlt2 />
-            </button>
+            <form action="" onSubmit={handleSubmit}>
+              <input
+                type="search"
+                placeholder="Search"
+                onChange={handleChange}
+                onSubmit={handleSubmit}
+              />
+              <button>
+                <BiSearchAlt2 />
+              </button>
+            </form>
           </div>
 
           <div className="navbar__icon-menu__btn">

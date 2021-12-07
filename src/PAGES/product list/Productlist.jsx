@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Navbar from "../../component/navbar/Navbar";
 import "./productlist.css";
 import Slider from "@mui/material/Slider";
@@ -8,13 +8,29 @@ import { Link } from "react-router-dom";
 import ProductcardPrimary from "../../component/productcard-primary/ProductcardPrimary";
 import Pagination from "../../component/pagination/Pagination";
 import Footer from "../../component/footer/Footer";
+import { useDispatch, useSelector } from "react-redux";
+import Spinner from "../../component/spinner/Spinner.jsx";
+import { getallProducts } from "../../actions/productactions.js";
 
 const Productlist = () => {
+  const dispatch = useDispatch();
   const [value] = React.useState([0, 100]);
   const [open, setOpen] = React.useState(false);
+  const { products, success, loading } = useSelector(
+    (state) => state.allproducts
+  );
+
+  useEffect(() => {
+    dispatch(getallProducts());
+  }, [dispatch]);
+
+  if (success) {
+    dispatch({ type: "RESET_SUCCESS" });
+  }
 
   return (
     <>
+      {loading && <Spinner />}
       <Navbar />
       <div className="productlist__container section__padding">
         <div className="show_filters" onClick={() => setOpen(!open)}>
@@ -34,11 +50,12 @@ const Productlist = () => {
         <div className="productlist__content">
           <ProductlistFilterLeft value={value} />
           <div className="productlist__all-products">
-            {products.map((product, i) => (
-              <Link to={`/product/${product.name}`}>
-                <ProductcardPrimary key={i} product={product} />
-              </Link>
-            ))}
+            {products &&
+              products.map((product, i) => (
+                <Link to={`/product/${product._id}`}>
+                  <ProductcardPrimary key={i} product={product} />
+                </Link>
+              ))}
           </div>
         </div>
         <Pagination />
@@ -103,81 +120,4 @@ const ProductlistFilterLeft = ({ value }) => (
   </div>
 );
 
-const products = [
-  {
-    name: "sjdhsajdhas ajshdjasd jsdhjasd jasdhjas jashdjs",
-    price: "$1,000",
-    image:
-      "https://res.cloudinary.com/juhan-cloud/image/upload/v1638200769/products/mbp-spacegray-select-202011_GEO_US-removebg-preview_awprvn.png",
-  },
-  {
-    name: "Macbook 2020 Macbook 2020 Macbook 2020 Macbook 2020",
-    price: "$1,000",
-    image:
-      "https://res.cloudinary.com/juhan-cloud/image/upload/v1638200769/products/mbp-spacegray-select-202011_GEO_US-removebg-preview_awprvn.png",
-  },
-  {
-    name: "Macbook 2020",
-    price: "$1,000",
-    image:
-      "https://res.cloudinary.com/juhan-cloud/image/upload/v1638200769/products/mbp-spacegray-select-202011_GEO_US-removebg-preview_awprvn.png",
-  },
-
-  {
-    name: "Macbook 2020",
-    price: "$1,000",
-    image:
-      "https://res.cloudinary.com/juhan-cloud/image/upload/v1638200769/products/mbp-spacegray-select-202011_GEO_US-removebg-preview_awprvn.png",
-  },
-  {
-    name: "Macbook 2020",
-    price: "$1,000",
-    image: "https://via.placeholder.com/400x400",
-  },
-  {
-    name: "Macbook 2020",
-    price: "$1,000",
-    image: "https://via.placeholder.com/300x300",
-  },
-  {
-    name: "Bamboo Biriyani asjdhsa dasjdsad ",
-    price: "$1,000",
-    image: "https://via.placeholder.com/1200x1200",
-  },
-  {
-    name: "Bamboo Biriyani asjdhsa dasjdsad ",
-    price: "$1,000",
-    image: "https://via.placeholder.com/1200x1200",
-  },
-  {
-    name: "Bamboo Biriyani asjdhsa dasjdsad ",
-    price: "$1,000",
-    image: "https://via.placeholder.com/1200x1200",
-  },
-  {
-    name: "Bamboo Biriyani asjdhsa dasjdsad ",
-    price: "$1,000",
-    image: "https://via.placeholder.com/1200x1200",
-  },
-  {
-    name: "Bamboo Biriyani asjdhsa dasjdsad ",
-    price: "$1,000",
-    image: "https://via.placeholder.com/1200x1200",
-  },
-  {
-    name: "Bamboo Biriyani asjdhsa dasjdsad ",
-    price: "$1,000",
-    image: "https://via.placeholder.com/1200x1200",
-  },
-  {
-    name: "Bamboo Biriyani asjdhsa dasjdsad sajdhsa djasdjas djashdas jashdj ",
-    price: "$1,000",
-    image: "https://via.placeholder.com/1200x1200",
-  },
-  {
-    name: "Bamboo Biriyani asjdhsa dasjdsad ",
-    price: "$1,000",
-    image: "https://via.placeholder.com/1200x1200",
-  },
-];
 export default Productlist;

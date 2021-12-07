@@ -8,6 +8,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { addproduct } from "../../actions/productactions.js";
 import { toastSuccess, toastError } from "../../utils/toastify.js";
 import Spinner from "../../component/spinner/Spinner.jsx";
+import "./addproduct.css";
 const Addproduct = () => {
   const [allimages, setAllimages] = React.useState("");
   const dispatch = useDispatch();
@@ -25,6 +26,7 @@ const Addproduct = () => {
   const {
     handleSubmit,
     register,
+    reset,
     formState: { errors },
   } = useForm({ resolver: yupResolver(schema) });
 
@@ -56,17 +58,42 @@ const Addproduct = () => {
     });
     console.log(formData);
     dispatch(addproduct(formData));
+    reset(data);
   };
 
   const { success, error, loading } = useSelector((state) => state.addproduct);
   if (success) {
     toastSuccess("Product Added Successfully");
     dispatch({ type: "RESET_SUCCESS" });
+    window.location.reload();
   }
   if (error) {
     toastError("Something went wrong");
     dispatch({ type: "CLEAR_ERROR" });
   }
+
+  const categories = [
+    "T-shirt",
+    "Shirt",
+    "Pants",
+    "Shoes",
+    "Bag",
+    "Female Dress",
+    "Accessories",
+    "Phone",
+    "Appliences",
+    "Laptop",
+    "Camera",
+    "Jacket",
+    "Trousers",
+    "Socks",
+    "Sweater",
+    "Sports",
+    "TV",
+    "Tablet",
+    "Washing Machine",
+    "Refrigerator",
+  ];
 
   return (
     <>
@@ -93,7 +120,12 @@ const Addproduct = () => {
           </div>
           <div className="input__group">
             <p>Category</p>
-            <input {...register("category")} />
+            <select {...register("category")}>
+              <option value={null}>Select Category</option>
+              {categories.map((category) => (
+                <option value={category}>{category}</option>
+              ))}
+            </select>
             <p className="error">{errors.category && "Category Required"}</p>
           </div>
           <div className="input__group">

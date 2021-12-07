@@ -5,13 +5,13 @@ const ProductcardPrimary = ({ product }) => {
   return (
     <div className="productCard">
       <div className="productCard__image">
-        <img src={product.image} alt={product.name} />
+        <img src={product.images[0].url} alt={product.name} />
       </div>
       <div className="productCard__name">
         <h3>{product.name}</h3>
       </div>
       <div className="productCard__price">
-        <p>{product.price}</p>
+        <p>{`$${product.price}`}</p>
       </div>
     </div>
   );
