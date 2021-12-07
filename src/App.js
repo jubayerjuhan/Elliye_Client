@@ -13,6 +13,7 @@ import Forgetpassword from './PAGES/forgetpassword/Forgotpassword.jsx';
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { loadUser } from './actions/userActions.js';
+import Addproduct from './PAGES/Admin_addproduct/Addproduct.jsx';
 
 
 function App() {
@@ -35,6 +36,7 @@ function App() {
           <Route path="/signup" element={<Signup />} />
           <Route path="/login" element={<Login />} />
           <Route path="/forgotten-password" element={<Forgetpassword />} />
+          <Route path="/addproduct" element={<Addproduct />} />
           <Route path="*" element={<Notfound />} />
         </Routes>
       </Router>

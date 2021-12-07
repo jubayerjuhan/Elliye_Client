@@ -2,7 +2,7 @@ import { useSelector } from "react-redux";
 import {
   BrowserRouter as Router,
   Route,
-  Redirect,
+  Navigate,
 } from "react-router-dom";
 
 
@@ -15,7 +15,7 @@ function PrivateRoute({ children, ...rest }) {
         isloggedin ? (
           children
         ) : (
-          <Redirect
+          <Navigate
             to={{
               pathname: "/login",
               state: { from: location }
@@ -26,3 +26,5 @@ function PrivateRoute({ children, ...rest }) {
     />
   );
 }
+
+export default PrivateRoute;

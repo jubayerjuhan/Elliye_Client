@@ -9,7 +9,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { useDispatch, useSelector } from "react-redux";
 import { registerUser } from "./../../actions/userActions";
 import Errordialog from "../../component/errordialog/Errordialog.jsx";
-import { showToast, toastError, toastSuccess } from "../../utils/toastify.js";
+import { toastError, toastSuccess } from "../../utils/toastify.js";
 import { useNavigate } from "react-router-dom";
 const schema = yup.object({
   name: yup.string().required("Name is required"),

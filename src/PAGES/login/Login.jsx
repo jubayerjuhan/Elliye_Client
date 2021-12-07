@@ -6,7 +6,7 @@ import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Link, useNavigate } from "react-router-dom";
-import { loadUser, loginUser } from "../../actions/userActions.js";
+import { loginUser } from "../../actions/userActions.js";
 import { useDispatch, useSelector } from "react-redux";
 import { toastError, toastSuccess } from "../../utils/toastify.js";
 

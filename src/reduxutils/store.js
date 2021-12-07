@@ -3,6 +3,7 @@ import { registerUserReducer } from "../reducers/userreducer.js"
 import { composeWithDevTools } from "redux-devtools-extension";
 import thunk from 'redux-thunk'
 import logger from "redux-logger";
+import { productreducer } from "./../reducers/productreducer";
 
 
 
@@ -10,7 +11,8 @@ import logger from "redux-logger";
 
 
 const reducer = combineReducers({
-  user: registerUserReducer
+  user: registerUserReducer,
+  addproduct: productreducer,
 })
 
 const middlewares = [thunk, logger]
