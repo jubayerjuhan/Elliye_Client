@@ -9,7 +9,7 @@ import Spinner from "../spinner/Spinner.jsx";
 import { getallProducts } from "../../actions/productactions.js";
 
 const FeaturedProducts = () => {
-  const { products, success, loading, error } = useSelector(
+  const { products, loading, error } = useSelector(
     (state) => state.allproducts
   );
   const dispatch = useDispatch();
@@ -55,7 +55,7 @@ const FeaturedProducts = () => {
           </div>
           <div className="fp__products">
             {products?.map((product, i) => (
-              <Link key={i} to={`/products/${product.name}`}>
+              <Link key={i} to={`/product/${product._id}`}>
                 <ProductcardPrimary product={product} />
               </Link>
             ))}

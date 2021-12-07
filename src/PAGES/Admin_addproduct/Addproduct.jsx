@@ -3,7 +3,7 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import Navbar from "../../component/navbar/Navbar";
-import Footer from "../../component/footer/Footer";
+// import Footer from "../../component/footer/Footer";
 import { useSelector, useDispatch } from "react-redux";
 import { addproduct } from "../../actions/productactions.js";
 import { toastSuccess, toastError } from "../../utils/toastify.js";

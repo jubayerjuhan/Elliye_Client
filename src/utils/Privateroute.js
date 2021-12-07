@@ -1,6 +1,6 @@
 import { useSelector } from "react-redux";
 import {
-  BrowserRouter as Router,
+
   Route,
   Navigate,
 } from "react-router-dom";
