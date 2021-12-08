@@ -11,18 +11,43 @@ import Footer from "../../component/footer/Footer";
 import { useDispatch, useSelector } from "react-redux";
 import Spinner from "../../component/spinner/Spinner.jsx";
 import { getallProducts } from "../../actions/productactions.js";
+import { categories } from "./../Admin_addproduct/Addproduct";
+import { useLocation } from "react-router-dom";
 
 const Productlist = () => {
+  const { search } = useLocation();
+  const key = search.split("keyword=")[1];
+  const [filter, setFilter] = React.useState({
+    category: "",
+    price: [0, 25000],
+    rating: 0,
+    keyword: key ? key : "",
+    page: 1,
+  });
   const dispatch = useDispatch();
-  const [value] = React.useState([0, 100]);
+  const [value, setValue] = React.useState([0, 100]);
   const [open, setOpen] = React.useState(false);
   const { products, success, loading } = useSelector(
     (state) => state.allproducts
   );
 
+  const handleValueChange = (event) => {
+    setFilter({ ...filter, [event.target.name]: event.target.value });
+    console.log(filter);
+  };
+
   useEffect(() => {
-    dispatch(getallProducts());
-  }, [dispatch]);
+    dispatch(
+      getallProducts(
+        filter.keyword,
+        filter.rating,
+        filter.price[0],
+        filter.price[1],
+        filter.page,
+        filter.category
+      )
+    );
+  }, [dispatch, filter]);
 
   if (success) {
     dispatch({ type: "RESET_SUCCESS" });
@@ -48,7 +73,11 @@ const Productlist = () => {
           <h4>Product List</h4>
         </div>
         <div className="productlist__content">
-          <ProductlistFilterLeft value={value} />
+          <ProductlistFilterLeft
+            value={value}
+            filter={filter}
+            onValueChange={handleValueChange}
+          />
           <div className="productlist__all-products">
             {products &&
               products.map((product, i) => (
@@ -65,21 +94,31 @@ const Productlist = () => {
   );
 };
 
-const ProductlistFilterLeft = ({ value }) => (
+const ProductlistFilterLeft = ({ onValueChange, filter }) => (
   <div className="productlist__filter">
+    {console.log(filter)}
     <div className="filter__category">
       <p>Filter By Category</p>
-      <select>
-        <option>All</option>
-        <option>Category 1</option>
-        <option>Category 2</option>
-        <option>Category 3</option>
+      <select onChange={onValueChange} name="category">
+        <option value="">All Categories</option>
+        {categories.map((category, i) => (
+          <option key={i} value={category}>
+            {category}
+          </option>
+        ))}
       </select>
     </div>
 
     <div className="filter__price">
       <p>Filter By Price</p>
-      <Slider value={value}></Slider>
+      {console.log(filter.price)}
+      <Slider
+        value={filter.price}
+        onChange={onValueChange}
+        name="price"
+        valueLabelDisplay="auto"
+        getAriaValueText={(value) => `${value}`}
+      ></Slider>
     </div>
 
     <div className="filter__review">

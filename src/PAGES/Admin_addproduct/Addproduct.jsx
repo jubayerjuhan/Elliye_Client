@@ -72,29 +72,6 @@ const Addproduct = () => {
     dispatch({ type: "CLEAR_ERROR" });
   }
 
-  const categories = [
-    "T-shirt",
-    "Shirt",
-    "Pants",
-    "Shoes",
-    "Bag",
-    "Female Dress",
-    "Accessories",
-    "Phone",
-    "Appliences",
-    "Laptop",
-    "Camera",
-    "Jacket",
-    "Trousers",
-    "Socks",
-    "Sweater",
-    "Sports",
-    "TV",
-    "Tablet",
-    "Washing Machine",
-    "Refrigerator",
-  ];
-
   return (
     <>
       {loading && <Spinner />}
@@ -144,5 +121,28 @@ const Addproduct = () => {
     </>
   );
 };
+
+export const categories = [
+  "T-shirt",
+  "Shirt",
+  "Pants",
+  "Shoes",
+  "Bag",
+  "Female Dress",
+  "Accessories",
+  "Phone",
+  "Appliences",
+  "Laptop",
+  "Camera",
+  "Jacket",
+  "Trousers",
+  "Socks",
+  "Sweater",
+  "Sports",
+  "TV",
+  "Tablet",
+  "Washing Machine",
+  "Refrigerator",
+];
 
 export default Addproduct;

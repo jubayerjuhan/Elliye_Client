@@ -13,7 +13,7 @@ import { getallProducts } from "../../actions/productactions.js";
 export const Menu = () => (
   <>
     <Link to="#newarrivals">New Arrivals</Link>
-    <Link to="/allproducts">Product List</Link>
+    <Link to="/products">Product List</Link>
     <Link to="#categories">Categories</Link>
     <Link to="#featured">Features</Link>
     <Link to="#collections">Collections</Link>
@@ -42,8 +42,7 @@ const Navbar = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    navigate("/products");
-    dispatch(getallProducts(keyword));
+    navigate("/products?searchkeyword=" + keyword);
   };
 
   return (

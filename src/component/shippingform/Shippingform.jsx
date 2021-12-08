@@ -4,12 +4,13 @@ import { useForm } from "react-hook-form";
 import * as yup from "yup";
 
 import "./shippingform.css";
+import { useDispatch } from "react-redux";
 
 const Shippingform = () => {
   const schema = yup
     .object({
-      firstName: yup.string().required(),
-      lastName: yup.string().required(),
+      name: yup.string().required(),
+      phoneNumber: yup.number().required(),
       street: yup.string().required(),
       city: yup.string().required(),
       state: yup.string().required(),
@@ -17,6 +18,7 @@ const Shippingform = () => {
       country: yup.string().required(),
     })
     .required();
+  const dispatch = useDispatch();
 
   const {
     handleSubmit,
@@ -24,36 +26,32 @@ const Shippingform = () => {
     formState: { errors },
   } = useForm({ resolver: yupResolver(schema) });
   const onSubmit = (data) => {
-    console.log(data);
+    dispatch({ type: "ADD_SHIPPING_ADDRESS", payload: data });
   };
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <div className="input__group">
-        <p>First Name</p>
-        <input {...register("firstName")} />
-        <p className="error">{errors.firstName && "First Name Required"}</p>
+        <p>Name</p>
+        <input {...register("name")} />
+        <p className="error">{errors.name && "Name Required"}</p>
       </div>
       <div className="input__group">
-        <p>Last Name</p>
-        <input {...register("lastName")} />
-        <p className="error">{errors.lastName && "Last Name Required"}</p>
+        <p>Phone Number</p>
+        <input {...register("phoneNumber")} />
+        <p className="error">{errors.phoneNumber && "Phone Number Required"}</p>
       </div>
       <div className="input__group">
-        <p>Address</p>
-        <input {...register("address")} />
-        <p className="error">{errors.street && "Address is Required"}</p>
-      </div>
-      <div className="input__group">
-        <p>Contact</p>
-        <input {...register("contact")} />
-        <p className="error">{errors.contact && "Contact Required"}</p>
+        <p>Street</p>
+        <input {...register("street")} />
+        <p className="error">{errors.street && "Street is Required"}</p>
       </div>
       <div className="input__group">
         <p>City</p>
         <input {...register("city")} />
         <p className="error">{errors.city && "City is Required"}</p>
       </div>
+
       <div className="input__group">
         <p>State</p>
         <input {...register("state")} />
@@ -64,6 +62,12 @@ const Shippingform = () => {
         <input {...register("zipcode")} />
         <p className="error">{errors.zipcode && "Zipcode Required"}</p>
       </div>
+      <div className="input__group">
+        <p>Country</p>
+        <input {...register("country")} />
+        <p className="error">{errors.contact && "Country Required"}</p>
+      </div>
+      <input type="submit" value="Submit" />
     </form>
   );
 };

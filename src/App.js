@@ -10,28 +10,44 @@ import Checkoutcomplete from "./PAGES/checkoutcomplete/Checkoutcomplete";
 import Signup from './PAGES/signup/Signup.jsx';
 import Login from './PAGES/login/Login.jsx';
 import Forgetpassword from './PAGES/forgetpassword/Forgotpassword.jsx';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { loadUser } from './actions/userActions.js';
 import Addproduct from './PAGES/Admin_addproduct/Addproduct.jsx';
+import { instance } from './utils/axios.js';
+import { Elements } from '@stripe/react-stripe-js';
+import { loadStripe } from '@stripe/stripe-js';
 
 
 function App() {
+  const [stripeKey, setStripeKey] = useState('');
   const dispatch = useDispatch();
   useEffect(() => {
     if (localStorage.getItem('token')) {
       dispatch(loadUser());
     }
+
+    const getStripeKey = async () => {
+      const { data } = await instance.get('/getStipePubKey');
+      setStripeKey(data.key);
+    }
+    getStripeKey();
+
   }, [dispatch]);
+  console.log(stripeKey)
+  const stripePromise = loadStripe('pk_test_51Jk944Kqk54qfeAmqK2cRxVVq122wVq5oMiAHWv0xEHXCjx362GhIJAiCkOCtjnfSVHGzMP7YSeVX6NQX4MuNASY00FJlGLuOo');
+
   return (
     <div className="App">
       <Router>
         <Routes>
+          <Route path="/checkout" element={<Elements stripe={stripePromise} >
+            <Checkout />
+          </Elements>} />
           <Route exact path="/" element={<Homepage />} />
           <Route exact path="/products" element={<Productlist />} />
           <Route path="/product/:id" element={<Productdetail />} />
           <Route path="/cart" element={<Shoppingcart />} />
-          <Route path="/checkout" element={<Checkout />} />
           <Route path="/checkout-complete" element={<Checkoutcomplete />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/login" element={<Login />} />

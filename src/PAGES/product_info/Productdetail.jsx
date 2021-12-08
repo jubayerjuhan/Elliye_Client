@@ -8,6 +8,9 @@ import { useParams } from "react-router";
 import { getSingleProduct } from "../../actions/productactions.js";
 import { useDispatch, useSelector } from "react-redux";
 import Spinner from "../../component/spinner/Spinner.jsx";
+import { toastWarning } from "../../utils/toastify.js";
+import { addItemstoCart } from "../../actions/cartactions.js";
+import { toastSuccess } from "./../../utils/toastify";
 const Productdetail = () => {
   const dispatch = useDispatch();
   const { product, loading, success } = useSelector(
@@ -24,10 +27,28 @@ const Productdetail = () => {
     setMainImage(product && product.images[0].url);
   }
 
+  // quantity
+  const [quantity, setQuantity] = React.useState(1);
+
+  if (quantity <= 0) {
+    toastWarning("Minimum quantity is 1");
+    setQuantity(1);
+  }
+  if (product?.stock < quantity) {
+    toastWarning("Not Enough Stock");
+    setQuantity(product?.stock);
+    return;
+  }
+
+  const handleAddtoCart = () => {
+    dispatch(addItemstoCart(product, quantity));
+    toastSuccess("Item Added to Cart");
+  };
+
   return (
     <>
       {loading && <Spinner />}
-      {product && (
+      {loading === false && (
         <>
           <Navbar />
           <div className="product-detail__container section__padding">
@@ -47,21 +68,21 @@ const Productdetail = () => {
               </div>
               <div className="product-detail-info">
                 <div className="product-detail__title">
-                  <h2>{product.name}</h2>
+                  <h2>{product?.name}</h2>
                 </div>
                 <div className="product-detail__price">
-                  <p>{`$${product.price}`}</p>
+                  <p>{`$${product?.price}`}</p>
                 </div>
                 <div className="product-detail__quantity">
                   <p>Quantity</p>
                   <div className="product-detail__quantity-input">
-                    <button>-</button>
-                    <input type="text" placeholder="1" />
-                    <button>+</button>
+                    <button onClick={() => setQuantity(quantity - 1)}>-</button>
+                    <input type="text" placeholder="1" value={quantity} />
+                    <button onClick={() => setQuantity(quantity + 1)}>+</button>
                   </div>
                 </div>
 
-                <div className="action-cart-btn">
+                <div onClick={handleAddtoCart} className="action-cart-btn">
                   <p>Add To Cart</p>
                   <svg
                     width="33"
@@ -77,7 +98,7 @@ const Productdetail = () => {
                   </svg>
                 </div>
                 <div className="product-detail__description">
-                  <p>{product.description}</p>
+                  <p>{product?.description}</p>
                 </div>
 
                 <div className="add__review-btn">

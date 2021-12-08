@@ -60,6 +60,10 @@
     background-color: var(--theme-blue);
   }
   p {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
     margin: 0 10px;
   }
 }
@@ -160,8 +164,7 @@
   .cart-items__total-price {
     width: fit-content;
   }
-}
-
-.cart-items__price {
-  display: none;
+  .cart-items__price {
+    display: none;
+  }
 }

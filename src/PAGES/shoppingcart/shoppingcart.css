@@ -76,6 +76,16 @@
 }
 
 .cart-items__quantity p {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  width: 20px;
   margin: 0 10px;
 }
 
@@ -210,9 +220,8 @@
     width: -moz-fit-content;
     width: fit-content;
   }
-}
-
-.cart-items__price {
-  display: none;
+  .cart-items__price {
+    display: none;
+  }
 }
 /*# sourceMappingURL=shoppingcart.css.map */

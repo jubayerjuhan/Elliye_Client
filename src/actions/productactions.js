@@ -15,10 +15,13 @@ export const addproduct = (productdata) => async (dispatch) => {
 
 
 // get all products from the server
-export const getallProducts = (keyword = '', ratings = 0, gte = 1, lte = 26009, page = 1,) => async (dispatch) => {
+export const getallProducts = (keyword = '', ratings = 0, gte = 1, lte = 26009, page = 1, category = '') => async (dispatch) => {
+  const link = category.length === 0 ? `/products?ratings[gte]=${ratings}&price[gte]=${gte}&price[lte]=${lte}&page=${page}&keyword=${keyword}` : `/products?ratings[gte]=${ratings}&price[gte]=${gte}&price[lte]=${lte}&page=${page}&keyword=${keyword}&category=${category}`
+  console.log(link)
   try {
     dispatch({ type: "ALL_PRODUCTS_PENDING" })
-    const { data } = await instance.get(`/products?ratings[gte]=${ratings}&price[gte]=${gte}&price[lte]=${lte}&page=${page}&keyword=${keyword}`);
+
+    const { data } = await instance.get(link);
     dispatch({ type: "ALL_PRODUCTS_FULFILLED", payload: data.products })
   } catch (err) {
     dispatch({ type: "ALL_PRODUCTS_REJECTED", error: err.response.data.message || err.message })

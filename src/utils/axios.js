@@ -4,7 +4,7 @@ export const authaxios = axios.create({
   baseURL: 'https://rocky-eyrie-75260.herokuapp.com/api/v1',
 
   headers: {
-    authorization: `Bearer ${localStorage.token ? localStorage.token : ''}`
+    authorization: `Bearer ${localStorage.token ? localStorage.token : ''}`,
   }
 });
 export const instance = axios.create({
