@@ -15,9 +15,10 @@ import { authaxios } from "../../utils/axios.js";
 import { toastError, toastSuccess } from "../../utils/toastify.js";
 import { useDispatch, useSelector } from "react-redux";
 import { placeOrder } from "../../actions/orderactions.js";
+import { useNavigate } from "react-router";
 
 const Checkout = () => {
-  const [clientSecret, setClientSecret] = React.useState(false);
+  const navigate = useNavigate();
   const paybtn = useRef(null);
   const stripe = useStripe();
   const elements = useElements();
@@ -74,6 +75,7 @@ const Checkout = () => {
         toastError(result.error.message);
         paybtn.current.disabled = false;
       } else {
+        // If Payment Success Then This Will Happen
         if (result.paymentIntent.status === "succeeded") {
           paybtn.current.disabled = false;
           toastSuccess("Payment Successful");
@@ -82,6 +84,8 @@ const Checkout = () => {
             status: result.paymentIntent.status,
           };
           dispatch(placeOrder(orderData));
+          localStorage.removeItem("cart");
+          navigate("/ordercomplete");
         } else {
           paybtn.current.disabled = false;
           toastError("Payment Failed");

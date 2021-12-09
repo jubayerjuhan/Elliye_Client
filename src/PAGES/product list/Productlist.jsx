@@ -25,7 +25,6 @@ const Productlist = () => {
     page: 1,
   });
   const dispatch = useDispatch();
-  const [value, setValue] = React.useState([0, 100]);
   const [open, setOpen] = React.useState(false);
   const { products, success, loading } = useSelector(
     (state) => state.allproducts
@@ -64,7 +63,7 @@ const Productlist = () => {
         </div>
         {open ? (
           <div className="slide-left">
-            <ProductlistFilterLeft value={value} />
+            <ProductlistFilterLeft filter={filter} />
           </div>
         ) : (
           ""
@@ -74,7 +73,6 @@ const Productlist = () => {
         </div>
         <div className="productlist__content">
           <ProductlistFilterLeft
-            value={value}
             filter={filter}
             onValueChange={handleValueChange}
           />

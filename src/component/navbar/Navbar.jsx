@@ -6,10 +6,9 @@ import "./navbar.css";
 import { Link } from "react-router-dom";
 import { Twirl as Hamburger } from "hamburger-react";
 import { FaRegUserCircle } from "react-icons/fa";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { toastSuccess } from "./../../utils/toastify";
 import { useNavigate } from "react-router-dom";
-import { getallProducts } from "../../actions/productactions.js";
 export const Menu = () => (
   <>
     <Link to="#newarrivals">New Arrivals</Link>
@@ -22,7 +21,6 @@ export const Menu = () => (
 );
 const Navbar = () => {
   const navigate = useNavigate();
-  const dispatch = useDispatch();
   const [isOpen, setOpen] = React.useState(false);
   const [keyword, setKeyword] = React.useState("");
   console.log(isOpen);
