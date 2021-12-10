@@ -43,6 +43,7 @@ const Login = () => {
   if (success) {
     toastSuccess("Login Successful");
     dispatch({ type: "CLEAR_SUCCESS" });
+    window.location.reload();
     navigate("/");
   }
   return (

@@ -42,6 +42,7 @@ const Signup = () => {
   if (success) {
     toastSuccess("Registered Successfully");
     dispatch({ type: "RESET_SUCCESS" });
+    window.location.reload();
     navigate("/");
   }
   if (error) {

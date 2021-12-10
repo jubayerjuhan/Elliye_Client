@@ -17,11 +17,14 @@ import Addproduct from './PAGES/Admin_addproduct/Addproduct.jsx';
 import { instance } from './utils/axios.js';
 import { Elements } from '@stripe/react-stripe-js';
 import { loadStripe } from '@stripe/stripe-js';
+import PrivateRoute from "./utils/Privateroute";
+import Myorders from "./PAGES/myorders/Myorders";
 
 
 function App() {
   const [stripeKey, setStripeKey] = useState('');
   const dispatch = useDispatch();
+
   useEffect(() => {
     if (localStorage.getItem('token')) {
       dispatch(loadUser());
@@ -53,6 +56,7 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/forgotten-password" element={<Forgetpassword />} />
           <Route path="/addproduct" element={<Addproduct />} />
+          <Route path="/orders" element={<Myorders />} />
           <Route path="*" element={<Notfound />} />
         </Routes>
       </Router>

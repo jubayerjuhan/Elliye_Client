@@ -1,0 +1,24 @@
+.orders__wrapper {
+  min-height: 200px;
+}
+
+.order__header {
+  padding: 0.7rem 2rem;
+  background-color: var(--theme-blue);
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: (1fr)[3];
+      grid-template-columns: repeat(3, 1fr);
+  color: #fff;
+}
+
+.order {
+  padding: 2rem 0;
+  border-bottom: 1px solid var(--theme-blue);
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: (1fr)[3];
+      grid-template-columns: repeat(3, 1fr);
+  background-color: #ececec;
+}
+/*# sourceMappingURL=myorders.css.map */

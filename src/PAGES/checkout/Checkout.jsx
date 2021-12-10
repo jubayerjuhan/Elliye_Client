@@ -16,6 +16,7 @@ import { toastError, toastSuccess } from "../../utils/toastify.js";
 import { useDispatch, useSelector } from "react-redux";
 import { placeOrder } from "../../actions/orderactions.js";
 import { useNavigate } from "react-router";
+import Spinner from "./../../component/spinner/Spinner";
 
 const Checkout = () => {
   const navigate = useNavigate();
@@ -25,6 +26,7 @@ const Checkout = () => {
   const { shippingAddress, cartItems } = useSelector((state) => state.cart);
   const { success, error } = useSelector((state) => state.order);
   const dispatch = useDispatch();
+  const [loading, setLoading] = React.useState(false);
 
   const paymentData = {
     amount: Math.round(JSON.parse(sessionStorage.getItem("amount")).totalPrice),
@@ -33,9 +35,11 @@ const Checkout = () => {
 
   if (success) {
     toastSuccess("Order Placed Successfully");
+    dispatch({ type: "RESET_SUCCESS" });
   }
   if (error) {
     toastError(Error);
+    dispatch({ type: "CLEAR_ERROR" });
   }
 
   const handleCheckout = async (e) => {
@@ -47,11 +51,13 @@ const Checkout = () => {
 
     e.preventDefault();
     paybtn.current.disabled = true;
+    setLoading(true);
     try {
       const { data } = await authaxios.post("/payment/process", paymentData);
 
       if (!stripe || !elements) {
         paybtn.current.disabled = false;
+        setLoading(false);
         return;
       }
       const result = await stripe.confirmCardPayment(data.client_secret, {
@@ -74,10 +80,12 @@ const Checkout = () => {
       if (result.error) {
         toastError(result.error.message);
         paybtn.current.disabled = false;
+        setLoading(false);
       } else {
         // If Payment Success Then This Will Happen
         if (result.paymentIntent.status === "succeeded") {
           paybtn.current.disabled = false;
+          setLoading(false);
           toastSuccess("Payment Successful");
           orderData.paymentInfo = {
             id: result.paymentIntent.id,
@@ -85,8 +93,9 @@ const Checkout = () => {
           };
           dispatch(placeOrder(orderData));
           localStorage.removeItem("cart");
-          navigate("/ordercomplete");
+          navigate("/checkout-complete");
         } else {
+          setLoading(false);
           paybtn.current.disabled = false;
           toastError("Payment Failed");
         }
@@ -95,10 +104,12 @@ const Checkout = () => {
       console.log(err);
       toastError("Unexpected Error While Processing Payment");
       paybtn.current.disabled = true;
+      setLoading(false);
     }
   };
   return (
     <>
+      {loading && <Spinner />}
       <Navbar />
       <Stapper activestep={1} />
       <div className="checkout__container section__padding">

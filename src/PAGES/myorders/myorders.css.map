@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAAA,AAAA,gBAAgB,CAAC;EACf,UAAU,EAAE,KAAK;CAClB;;AAED,AAAA,cAAc,CAAC;EACb,OAAO,EAAE,WAAW;EACpB,gBAAgB,EAAE,iBAAiB;EACnC,OAAO,EAAE,IAAI;EACb,qBAAqB,EAAE,cAAc;EACrC,KAAK,EAAE,IAAI;CAIZ;;AAED,AAAA,MAAM,CAAC;EACL,OAAO,EAAE,MAAM;EACf,aAAa,EAAE,GAAG,CAAC,KAAK,CAAC,iBAAiB;EAC1C,OAAO,EAAE,IAAI;EACb,qBAAqB,EAAE,cAAc;EACrC,gBAAgB,EAAE,OAAkB;CACrC",
+    "sources": [
+        "myorders.scss"
+    ],
+    "names": [],
+    "file": "myorders.css"
+}

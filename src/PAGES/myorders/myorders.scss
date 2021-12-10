@@ -1,0 +1,22 @@
+.orders__wrapper {
+  min-height: 200px;
+}
+
+.order__header {
+  padding: 0.7rem 2rem;
+  background-color: var(--theme-blue);
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  color: #fff;
+  // p{
+  //   padding: 1;
+  // }
+}
+
+.order {
+  padding: 2rem 0;
+  border-bottom: 1px solid var(--theme-blue);
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  background-color: rgb(236, 236, 236);
+}
