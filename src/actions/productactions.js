@@ -9,7 +9,7 @@ export const addproduct = (productdata) => async (dispatch) => {
     dispatch({ type: "ADD_PRODUCT_FULFILLED", payload: data.success })
 
   } catch (err) {
-    dispatch({ type: "ADD_PRODUCT_REJECTED", error: err.response.data.message || err.message })
+    dispatch({ type: "ADD_PRODUCT_REJECTED", error: (err.response && err.response.data.message) || err.message })
   }
 }
 
@@ -24,7 +24,7 @@ export const getallProducts = (keyword = '', ratings = 0, gte = 1, lte = 26009, 
     const { data } = await instance.get(link);
     dispatch({ type: "ALL_PRODUCTS_FULFILLED", payload: data.products })
   } catch (err) {
-    dispatch({ type: "ALL_PRODUCTS_REJECTED", error: err.response.data.message || err.message })
+    dispatch({ type: "ALL_PRODUCTS_REJECTED", error: err.response && err.response.data.message || err.message })
 
   }
 }

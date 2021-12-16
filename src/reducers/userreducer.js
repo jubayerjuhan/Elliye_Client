@@ -2,7 +2,7 @@ export const registerUserReducer = (state = {}, action) => {
   switch (action.type) {
     case "REGISTER_USER_PENDING":
     case "LOAD_USER_PENIDNG":
-    case "LOGIN_USER_PENIDNG":
+    case "LOGIN_USER_PENDING":
       return {
         ...state,
         loading: true,

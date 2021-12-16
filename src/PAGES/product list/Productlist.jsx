@@ -16,14 +16,19 @@ import { useLocation } from "react-router-dom";
 
 const Productlist = () => {
   const { search } = useLocation();
+  const location = useLocation();
+  console.log(location);
+
   const key = search.split("keyword=")[1];
+
   const [filter, setFilter] = React.useState({
     category: "",
     price: [0, 25000],
     rating: 0,
-    keyword: key ? key : "",
+    keyword: key,
     page: 1,
   });
+  filter.keyword = key;
   const dispatch = useDispatch();
   const [open, setOpen] = React.useState(false);
   const { products, success, loading } = useSelector(
@@ -34,6 +39,12 @@ const Productlist = () => {
     setFilter({ ...filter, [event.target.name]: event.target.value });
     console.log(filter);
   };
+
+  const categoryFromHome = search.split("category=")[1];
+  if (categoryFromHome) {
+    filter.category = categoryFromHome;
+  }
+  console.log(categoryFromHome);
 
   useEffect(() => {
     dispatch(
@@ -46,7 +57,7 @@ const Productlist = () => {
         filter.category
       )
     );
-  }, [dispatch, filter]);
+  }, [dispatch, filter, key]);
 
   if (success) {
     dispatch({ type: "RESET_SUCCESS" });
@@ -79,7 +90,7 @@ const Productlist = () => {
           <div className="productlist__all-products">
             {products &&
               products.map((product, i) => (
-                <Link to={`/product/${product._id}`}>
+                <Link key={i} to={`/product/${product._id}`}>
                   <ProductcardPrimary key={i} product={product} />
                 </Link>
               ))}
@@ -109,7 +120,6 @@ const ProductlistFilterLeft = ({ onValueChange, filter }) => (
 
     <div className="filter__price">
       <p>Filter By Price</p>
-      {console.log(filter.price)}
       <Slider
         value={filter.price}
         onChange={onValueChange}

@@ -9,6 +9,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { loginUser } from "../../actions/userActions.js";
 import { useDispatch, useSelector } from "react-redux";
 import { toastError, toastSuccess } from "../../utils/toastify.js";
+import Spinner from "./../../component/spinner/Spinner";
 
 const schema = yup.object({
   email: yup
@@ -21,6 +22,10 @@ const schema = yup.object({
 });
 
 const Login = () => {
+  const { error, success, isloggedin, loading } = useSelector(
+    (state) => state.user
+  );
+
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const {
@@ -29,11 +34,13 @@ const Login = () => {
     formState: { errors },
   } = useForm({ resolver: yupResolver(schema) });
 
+  if (isloggedin) {
+    navigate("/");
+  }
+
   const onSubmit = (data) => {
     dispatch(loginUser(data));
   };
-
-  const { error, success } = useSelector((state) => state.user);
 
   if (error) {
     toastError(error);
@@ -48,6 +55,7 @@ const Login = () => {
   }
   return (
     <>
+      {loading && <Spinner />}
       <Navbar />
       <div className="register__container section__full-padding">
         <div className="register__graphicside">
@@ -66,7 +74,7 @@ const Login = () => {
 
             <div className="form__input">
               <p>Password</p>
-              <input {...register("password")} />
+              <input type="password" {...register("password")} />
               <p className="error">{errors.password?.message}</p>
             </div>
 

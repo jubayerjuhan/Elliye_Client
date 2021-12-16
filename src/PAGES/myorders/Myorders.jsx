@@ -47,7 +47,7 @@ const Myorders = () => {
                   </p>
                 </div>
                 <div className="order__price">
-                  <p>{order.priceBreakdown.totalPrice}</p>
+                  <p>{`$${order.priceBreakdown.totalPrice}`}</p>
                 </div>
               </div>
             ))}

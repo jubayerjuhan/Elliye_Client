@@ -8,9 +8,9 @@ import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useDispatch, useSelector } from "react-redux";
 import { registerUser } from "./../../actions/userActions";
-import Errordialog from "../../component/errordialog/Errordialog.jsx";
 import { toastError, toastSuccess } from "../../utils/toastify.js";
 import { useNavigate } from "react-router-dom";
+import Spinner from "./../../component/spinner/Spinner";
 const schema = yup.object({
   name: yup.string().required("Name is required"),
   email: yup
@@ -27,7 +27,9 @@ const schema = yup.object({
 
 const Signup = () => {
   const navigate = useNavigate();
-  const { success, error } = useSelector((state) => state.user);
+  const { success, loading, isloggedin, error } = useSelector(
+    (state) => state.user
+  );
   const dispatch = useDispatch();
   const {
     register,
@@ -39,6 +41,9 @@ const Signup = () => {
   const onSubmit = async (data) => {
     dispatch(registerUser(data));
   };
+  if (isloggedin) {
+    navigate("/");
+  }
   if (success) {
     toastSuccess("Registered Successfully");
     dispatch({ type: "RESET_SUCCESS" });
@@ -52,9 +57,7 @@ const Signup = () => {
   return (
     <>
       <Navbar />
-      {success ? (
-        <Errordialog message="Account created Successfully"></Errordialog>
-      ) : null}
+      {loading && <Spinner />}
       <div className="register__container section__full-padding">
         <div className="register__graphicside">
           <div className="register__graphicside__image">
@@ -71,18 +74,18 @@ const Signup = () => {
             </div>
             <div className="form__input">
               <p>Email</p>
-              <input {...register("email")} />
+              <input type="email" {...register("email")} />
               <p className="error">{errors.email?.message}</p>
             </div>
 
             <div className="form__input">
               <p>Password</p>
-              <input {...register("password")} />
+              <input type="password" {...register("password")} />
               <p className="error">{errors.password?.message}</p>
             </div>
             <div className="form__input">
               <p>Confirm Password</p>
-              <input {...register("confirmPassword")} />
+              <input type="password" {...register("confirmPassword")} />
               <p className="error">{errors.confirmPassword?.message}</p>
             </div>
             <input type="submit" className="btn btn-primary" />
