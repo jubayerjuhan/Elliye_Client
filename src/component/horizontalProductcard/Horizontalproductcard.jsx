@@ -1,15 +1,15 @@
 import React from "react";
 import "./horizontalProductcard.css";
 
-const Horizontalproductcard = () => {
+const Horizontalproductcard = ({ product }) => {
   return (
     <div className="hProductcard__container">
       <div className="hProductcard__image">
-        <img src="https://via.placeholder.com/300x300" alt="" />
+        <img src={product?.images[0].url} alt="" />
       </div>
       <div className="hProductcard__info">
-        <h2>Product Name </h2>
-        <p>$200</p>
+        <h2>{product?.name} </h2>
+        <p>{`$${product?.price}`}</p>
       </div>
     </div>
   );
