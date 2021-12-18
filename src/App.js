@@ -44,24 +44,29 @@ function App() {
     <div className="App">
       <Router>
         <Routes>
+          {/* checkout route */}
           <Route path="/checkout" element={<Elements stripe={stripePromise} >
             <Checkout />
           </Elements>} />
+          {/* home page route */}
           <Route exact path="/" element={<Homepage />} />
 
-          <Route element={<PrivateRoute />}>
-            <Route exact path="/products" element={<Productlist />} />
-            <Route path="/product/:id" element={<Productdetail />} />
-          </Route>
-
-          <Route path="/cart" element={<Shoppingcart />} />
-          <Route path="/checkout-complete" element={<Checkoutcomplete />} />
+          {/* general routes */}
+          <Route exact path="/products" element={<Productlist />} />
+          <Route path="/product/:id" element={<Productdetail />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/login" element={<Login />} />
           <Route path="/forgotten-password" element={<Forgetpassword />} />
-          <Route path="/addproduct" element={<Addproduct />} />
-          <Route path="/orders" element={<Myorders />} />
+
+          {/* private routes */}
+          <Route element={<PrivateRoute />}>
+            <Route path="/cart" element={<Shoppingcart />} />
+            <Route path="/checkout-complete" element={<Checkoutcomplete />} />
+            <Route path="/addproduct" element={<Addproduct />} />
+            <Route path="/orders" element={<Myorders />} />
+          </Route>
           <Route path="*" element={<Notfound />} />
+
         </Routes>
       </Router>
     </div>

@@ -10,6 +10,7 @@ import { loginUser } from "../../actions/userActions.js";
 import { useDispatch, useSelector } from "react-redux";
 import { toastError, toastSuccess } from "../../utils/toastify.js";
 import Spinner from "./../../component/spinner/Spinner";
+import { useLocation } from "react-router-dom";
 
 const schema = yup.object({
   email: yup
@@ -25,6 +26,7 @@ const Login = () => {
   const { error, success, isloggedin, loading } = useSelector(
     (state) => state.user
   );
+  const location = useLocation();
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -35,7 +37,7 @@ const Login = () => {
   } = useForm({ resolver: yupResolver(schema) });
 
   if (isloggedin) {
-    navigate("/");
+    location.state.pathname ? navigate(location.state.pathname) : navigate("/");
   }
 
   const onSubmit = (data) => {
@@ -50,8 +52,7 @@ const Login = () => {
   if (success) {
     toastSuccess("Login Successful");
     dispatch({ type: "CLEAR_SUCCESS" });
-    window.location.reload();
-    navigate("/");
+    // window.location.reload();
   }
   return (
     <>
