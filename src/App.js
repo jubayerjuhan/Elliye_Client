@@ -48,8 +48,12 @@ function App() {
             <Checkout />
           </Elements>} />
           <Route exact path="/" element={<Homepage />} />
-          <Route exact path="/products" element={<Productlist />} />
-          <Route path="/product/:id" element={<Productdetail />} />
+
+          <Route element={<PrivateRoute />}>
+            <Route exact path="/products" element={<Productlist />} />
+            <Route path="/product/:id" element={<Productdetail />} />
+          </Route>
+
           <Route path="/cart" element={<Shoppingcart />} />
           <Route path="/checkout-complete" element={<Checkoutcomplete />} />
           <Route path="/signup" element={<Signup />} />
