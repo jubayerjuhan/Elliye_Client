@@ -11,12 +11,12 @@ import { toastSuccess } from "./../../utils/toastify";
 import { useNavigate } from "react-router-dom";
 export const Menu = () => (
   <>
-    <Link to="#newarrivals">New Arrivals</Link>
+    <a href="/#newarrivals">New Arrivals</a>
     <Link to="/products">Product List</Link>
-    <Link to="#categories">Categories</Link>
-    <Link to="#featured">Features</Link>
-    <Link to="#collections">Collections</Link>
-    <Link to="#discount">Discount</Link>
+    {/* <Link to="#categories">Categories</Link> */}
+    <a href="/#featured">Featured</a>
+    {/* <Link to="#collections">Collections</Link> */}
+    <a href="/#popularnow">Popular Now 📈</a>
   </>
 );
 const Navbar = () => {

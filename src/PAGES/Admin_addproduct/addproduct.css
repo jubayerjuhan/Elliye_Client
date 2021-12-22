@@ -6,4 +6,13 @@
   color: var(--theme-blue);
   outline: none;
 }
+
+.input__group textarea {
+  width: 100%;
+  padding: 0.5rem;
+  outline: none;
+  font-size: 1rem;
+  font-family: var(--font-family);
+  resize: none;
+}
 /*# sourceMappingURL=addproduct.css.map */

@@ -1,6 +1,7 @@
 import { yupResolver } from "@hookform/resolvers/yup";
 import React from "react";
-import { useForm } from "react-hook-form";
+
+import { useForm, Controller } from "react-hook-form";
 import * as yup from "yup";
 import Navbar from "../../component/navbar/Navbar";
 // import Footer from "../../component/footer/Footer";
@@ -27,6 +28,7 @@ const Addproduct = () => {
     handleSubmit,
     register,
     reset,
+    control,
     formState: { errors },
   } = useForm({ resolver: yupResolver(schema) });
 
@@ -47,6 +49,7 @@ const Addproduct = () => {
   };
 
   const onSubmit = async (data) => {
+    // console.log(data);
     const formData = new FormData();
     formData.append("name", data.name);
     formData.append("description", data.description);
@@ -85,7 +88,14 @@ const Addproduct = () => {
           </div>
           <div className="input__group">
             <p>Description</p>
-            <input {...register("description")} />
+            <Controller
+              name="description"
+              control={control}
+              label="Description"
+              render={() => (
+                <textarea rows={10} {...register("description")}></textarea>
+              )}
+            ></Controller>
             <p className="error">
               {errors.description && "description Required"}
             </p>

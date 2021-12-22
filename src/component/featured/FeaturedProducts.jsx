@@ -51,7 +51,7 @@ const FeaturedProducts = () => {
           </Link>
         </div>
 
-        <div className="fp__container-section">
+        <div className="fp__container-section" id="featured">
           <div className="fp__banner color">
             <div className="banner__image">
               <img
