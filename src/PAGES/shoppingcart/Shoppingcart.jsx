@@ -22,6 +22,8 @@ const Shoppingcart = () => {
     shipping = 20;
   } else if (subtotal > 1000) {
     shipping = 30;
+  } else if (subtotal === 0) {
+    shipping = 0;
   } else {
     shipping = 50;
   }

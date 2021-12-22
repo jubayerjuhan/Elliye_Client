@@ -2,6 +2,7 @@ import React from "react";
 import Horizontalproductcard from "../horizontalProductcard/Horizontalproductcard";
 import "./hotsection.css";
 import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 const Hotsection = () => {
   let { products } = useSelector((state) => state.allproducts);
   const newArrival = products?.slice(0, 4);
@@ -28,7 +29,9 @@ const Hotsection = () => {
         <div className="hotsection__new-arrival_products">
           {newArrival &&
             newArrival.map((product, i) => (
-              <Horizontalproductcard key={i} product={product} />
+              <Link to={`product/${product._id}`}>
+                <Horizontalproductcard key={i} product={product} />
+              </Link>
             ))}
         </div>
       </div>
@@ -38,7 +41,9 @@ const Hotsection = () => {
         <div className="hotsection__popular-week_products">
           {popular &&
             popular.map((product, i) => (
-              <Horizontalproductcard key={i} product={product} />
+              <Link to={`product/${product._id}`}>
+                <Horizontalproductcard key={i} product={product} />
+              </Link>
             ))}
         </div>
       </div>

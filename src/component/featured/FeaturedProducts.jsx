@@ -14,6 +14,14 @@ const FeaturedProducts = () => {
   );
   const dispatch = useDispatch();
 
+  let featuredProducts = [];
+  if (products) {
+    for (let i = products.length - 1; i >= 0; i--) {
+      featuredProducts.push(products[i]);
+    }
+    featuredProducts = featuredProducts.slice(0, 8);
+  }
+
   if (products) {
     for (let i = 0; i < products.length; i++) {
       const product = products[i];
@@ -22,6 +30,7 @@ const FeaturedProducts = () => {
       }
     }
   }
+
   useEffect(() => {
     dispatch(getallProducts());
   }, [dispatch]);
@@ -36,7 +45,7 @@ const FeaturedProducts = () => {
       <div className="fp__container section__padding" id="featured">
         <div className="fp__container-heading">
           <h4>Featured</h4>
-          <Link to="/products/featured">
+          <Link to="/products">
             <p>View All</p>
             <BsArrowRight />
           </Link>
@@ -54,7 +63,7 @@ const FeaturedProducts = () => {
             </div>
           </div>
           <div className="fp__products">
-            {products?.map((product, i) => (
+            {featuredProducts?.map((product, i) => (
               <Link key={i} to={`/product/${product._id}`}>
                 <ProductcardPrimary product={product} />
               </Link>

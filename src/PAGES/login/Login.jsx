@@ -37,8 +37,14 @@ const Login = () => {
   } = useForm({ resolver: yupResolver(schema) });
 
   if (isloggedin) {
-    location.state.pathname ? navigate(location.state.pathname) : navigate("/");
+    if (!location.state) {
+      navigate("/");
+    } else {
+      navigate(location.state.from.pathname);
+    }
   }
+
+  console.log(location);
 
   const onSubmit = (data) => {
     dispatch(loginUser(data));
@@ -52,7 +58,7 @@ const Login = () => {
   if (success) {
     toastSuccess("Login Successful");
     dispatch({ type: "CLEAR_SUCCESS" });
-    // window.location.reload();
+    window.location.reload();
   }
   return (
     <>

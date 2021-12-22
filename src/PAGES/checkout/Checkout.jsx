@@ -2,6 +2,7 @@ import React, { useRef } from "react";
 import Navbar from "../../component/navbar/Navbar";
 import Footer from "../../component/footer/Footer";
 import Stapper from "../../component/stepper/Stepper";
+import { Country } from "country-state-city";
 import "./checkout.css";
 import Shippingform from "./../../component/shippingform/Shippingform";
 import {
@@ -25,13 +26,19 @@ const Checkout = () => {
   const elements = useElements();
   const { shippingAddress, cartItems } = useSelector((state) => state.cart);
   const { success, error } = useSelector((state) => state.order);
+  const { user } = useSelector((state) => state.user);
+
   const dispatch = useDispatch();
   const [loading, setLoading] = React.useState(false);
 
   const paymentData = {
-    amount: Math.round(JSON.parse(sessionStorage.getItem("amount")).totalPrice),
+    amount:
+      Math.round(JSON.parse(sessionStorage.getItem("amount")).totalPrice) * 100,
   };
   console.log(paymentData);
+
+  //countryList
+  const countries = Country.getAllCountries();
 
   if (success) {
     toastSuccess("Order Placed Successfully");
@@ -64,14 +71,14 @@ const Checkout = () => {
         payment_method: {
           card: elements.getElement(CardNumberElement),
           billing_details: {
-            name: "Juhan",
-            email: "juhan@gmail.com",
+            name: user.name,
+            email: user.email,
             address: {
-              line1: "shippingInfo.street",
-              city: "shippingInfo.city",
-              state: "shippingInfo.state",
-              postal_code: "shippingInfo.zipcode",
-              country: "BD",
+              line1: shippingAddress.street,
+              city: shippingAddress.city,
+              state: shippingAddress.state,
+              postal_code: shippingAddress.zipcode,
+              country: shippingAddress.country,
             },
           },
         },
@@ -115,7 +122,7 @@ const Checkout = () => {
       <div className="checkout__container section__padding">
         <div className="shipping__address-section">
           <p className="shipping__address-section-title">Buyer Info</p>
-          <Shippingform />
+          <Shippingform countries={countries} />
         </div>
         <div className="checkout__section-cc">
           {shippingAddress && (

@@ -24,7 +24,7 @@ export const getallProducts = (keyword = '', ratings = 0, gte = 1, lte = 26009, 
     const { data } = await instance.get(link);
     dispatch({ type: "ALL_PRODUCTS_FULFILLED", payload: data.products })
   } catch (err) {
-    dispatch({ type: "ALL_PRODUCTS_REJECTED", error: err.response && err.response.data.message || err.message })
+    dispatch({ type: "ALL_PRODUCTS_REJECTED", error: err.response.data.message || err.message })
 
   }
 }

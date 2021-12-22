@@ -10,7 +10,7 @@ export const registerUser = (registerinfo) => async (dispatch) => {
     const { data } = await instance.post('/register', registerinfo);
 
     dispatch({ type: 'REGISTER_USER_FULFILLED', payload: data.success });
-    localStorage.setItem('token', data.token);
+    localStorage.setItem('token', { expiry: Date.now() + 3 * 24 * 60 * 60 * 1000, token: data.token });
 
   }
   catch (err) {
@@ -43,7 +43,7 @@ export const loginUser = (logindata) => async (dispatch) => {
     dispatch({ type: 'LOGIN_USER_PENDING' })
     const { data } = await instance.post('/login', logindata);
     dispatch({ type: 'LOGIN_USER_FULFILLED', payload: data.success });
-    localStorage.setItem('token', data.token);
+    localStorage.setItem('token', JSON.stringify({ expiry: Date.now() + 3 * 24 * 60 * 60 * 1000, token: data.token }));
   } catch (err) {
     dispatch({ type: 'LOGIN_USER_REJECTED', payload: err?.response?.data?.message || err.message })
   }

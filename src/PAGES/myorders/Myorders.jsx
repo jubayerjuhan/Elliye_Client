@@ -3,7 +3,7 @@ import Footer from "../../component/footer/Footer.jsx";
 import Navbar from "../../component/navbar/Navbar.jsx";
 import "./myorders.css";
 import { useDispatch, useSelector } from "react-redux";
-import { toastError, toastSuccess } from "../../utils/toastify.js";
+import { toastError } from "../../utils/toastify.js";
 import Spinner from "./../../component/spinner/Spinner";
 import { getUserOrder } from "../../actions/orderactions.js";
 const Myorders = () => {
@@ -18,6 +18,10 @@ const Myorders = () => {
 
   if (error) {
     toastError("Unknown Error Occured");
+  }
+
+  if (success) {
+    dispatch({ type: "RESET_SUCCESS" });
   }
 
   return (
