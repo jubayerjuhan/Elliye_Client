@@ -22,9 +22,9 @@ export const getallProducts = (keyword = '', ratings = 0, gte = 1, lte = 26009, 
     dispatch({ type: "ALL_PRODUCTS_PENDING" })
 
     const { data } = await instance.get(link);
-    dispatch({ type: "ALL_PRODUCTS_FULFILLED", payload: data.products })
+    dispatch({ type: "ALL_PRODUCTS_FULFILLED", payload: data })
   } catch (err) {
-    dispatch({ type: "ALL_PRODUCTS_REJECTED", error: err.response.data.message || err.message })
+    dispatch({ type: "ALL_PRODUCTS_REJECTED", error: err.message || err.response.data.message })
 
   }
 }

@@ -58,7 +58,9 @@ const Navbar = () => {
       >
         <div className="navbar__container-top">
           <div className="navbar__logo">
-            <img src={logo} alt="" onClick={() => navigate("/")} />
+            <a href="/">
+              <img src={logo} alt="Logo" />
+            </a>
           </div>
 
           <div className="navbar__searchbar">

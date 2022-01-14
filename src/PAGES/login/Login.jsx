@@ -87,9 +87,14 @@ const Login = () => {
 
             <input type="submit" className="btn btn-primary" />
           </form>
-          <Link to="/forgotten-password">
-            <p className="forgotten__pass">Forgotten Password?</p>
-          </Link>
+          <div className="navlink__wrapper">
+            <Link to="/forgotten-password">
+              <p className="forgotten__pass">Forgotten Password?</p>
+            </Link>
+            <Link to="/signup">
+              <p className="forgotten__pass">Sign Up</p>
+            </Link>
+          </div>
         </div>
       </div>
       <Footer />

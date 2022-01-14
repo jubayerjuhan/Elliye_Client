@@ -8,7 +8,11 @@ import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useDispatch, useSelector } from "react-redux";
 import { registerUser } from "./../../actions/userActions";
-import { toastError, toastSuccess } from "../../utils/toastify.js";
+import {
+  toastError,
+  toastSuccess,
+  toastWarning,
+} from "../../utils/toastify.js";
 import { useNavigate } from "react-router-dom";
 import Spinner from "./../../component/spinner/Spinner";
 const schema = yup.object({
@@ -38,9 +42,16 @@ const Signup = () => {
   } = useForm({
     resolver: yupResolver(schema),
   });
+
+  // handle submit
   const onSubmit = async (data) => {
-    dispatch(registerUser(data));
+    if (!(data.password === data.confirmPassword)) {
+      toastWarning("Password Doesn't Match");
+    } else {
+      dispatch(registerUser(data));
+    }
   };
+
   if (isloggedin) {
     navigate("/");
   }
@@ -56,8 +67,8 @@ const Signup = () => {
   }
   return (
     <>
-      <Navbar />
       {loading && <Spinner />}
+      <Navbar />
       <div className="register__container section__full-padding">
         <div className="register__graphicside">
           <div className="register__graphicside__image">

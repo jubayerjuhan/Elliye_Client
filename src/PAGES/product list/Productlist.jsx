@@ -2,7 +2,6 @@ import React, { useEffect } from "react";
 import Navbar from "../../component/navbar/Navbar";
 import "./productlist.css";
 import Slider from "@mui/material/Slider";
-import { AiFillStar } from "react-icons/ai";
 import { IoColorFilterOutline } from "react-icons/io5";
 import { Link } from "react-router-dom";
 import ProductcardPrimary from "../../component/productcard-primary/ProductcardPrimary";
@@ -31,9 +30,8 @@ const Productlist = () => {
   filter.keyword = key;
   const dispatch = useDispatch();
   const [open, setOpen] = React.useState(false);
-  const { products, success, loading } = useSelector(
-    (state) => state.allproducts
-  );
+  const { products, success, loading, productsCount, resultPerPage } =
+    useSelector((state) => state.allproducts);
 
   const handleValueChange = (event) => {
     setFilter({ ...filter, [event.target.name]: event.target.value });
@@ -44,7 +42,6 @@ const Productlist = () => {
   if (categoryFromHome) {
     filter.category = categoryFromHome;
   }
-  console.log(categoryFromHome);
 
   useEffect(() => {
     dispatch(
@@ -57,11 +54,13 @@ const Productlist = () => {
         filter.category
       )
     );
-  }, [dispatch, filter, key]);
+  }, [dispatch, filter, key, productsCount, resultPerPage]);
 
   if (success) {
     dispatch({ type: "RESET_SUCCESS" });
   }
+  const totalPage = Math.ceil(productsCount / resultPerPage);
+  console.log(totalPage, "tp");
 
   return (
     <>
@@ -96,7 +95,13 @@ const Productlist = () => {
               ))}
           </div>
         </div>
-        <Pagination />
+        {totalPage > 1 && (
+          <Pagination
+            totalPage={totalPage}
+            setFilter={setFilter}
+            filter={filter}
+          />
+        )}
       </div>
       <Footer />
     </>
@@ -127,42 +132,6 @@ const ProductlistFilterLeft = ({ onValueChange, filter }) => (
         valueLabelDisplay="auto"
         getAriaValueText={(value) => `${value}`}
       ></Slider>
-    </div>
-
-    <div className="filter__review">
-      <p>Filter By review</p>
-      <form action="">
-        <div className="review__checkbox">
-          <input type="checkbox" name="" id="" value="1" />
-          <AiFillStar />
-        </div>
-        <div className="review__checkbox">
-          <input type="checkbox" name="" id="" value="1" />
-          <AiFillStar />
-          <AiFillStar />
-        </div>
-        <div className="review__checkbox">
-          <input type="checkbox" name="" id="" value="1" />
-          <AiFillStar />
-          <AiFillStar />
-          <AiFillStar />
-        </div>
-        <div className="review__checkbox">
-          <input type="checkbox" name="" id="" value="1" />
-          <AiFillStar />
-          <AiFillStar />
-          <AiFillStar />
-          <AiFillStar />
-        </div>
-        <div className="review__checkbox">
-          <input type="checkbox" name="" id="" value="1" />
-          <AiFillStar />
-          <AiFillStar />
-          <AiFillStar />
-          <AiFillStar />
-          <AiFillStar />
-        </div>
-      </form>
     </div>
   </div>
 );

@@ -99,4 +99,15 @@
   margin: 1rem 0;
   font-size: 0.9rem;
 }
+
+.navlink__wrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
 /*# sourceMappingURL=signup.css.map */

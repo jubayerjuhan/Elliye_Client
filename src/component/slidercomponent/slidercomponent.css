@@ -1,5 +1,19 @@
 .slider__container {
   position: relative;
+  min-height: 500px;
+  background-image: url("https://upload.wikimedia.org/wikipedia/commons/3/37/Vue_sur_le_Tanargue.JPG");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 100%;
+}
+
+.slider__container::before {
+  content: "";
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.336);
+  position: absolute;
 }
 
 .slider__container .slider__image {

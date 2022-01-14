@@ -10,13 +10,12 @@ export const registerUser = (registerinfo) => async (dispatch) => {
     const { data } = await instance.post('/register', registerinfo);
 
     dispatch({ type: 'REGISTER_USER_FULFILLED', payload: data.success });
-    localStorage.setItem('token', { expiry: Date.now() + 3 * 24 * 60 * 60 * 1000, token: data.token });
-
+    localStorage.setItem('token', JSON.stringify({ expiry: Date.now() + 3 * 24 * 60 * 60 * 1000, token: data.token }));
   }
   catch (err) {
-    console.log(err)
+    console.log(err.response)
     dispatch({
-      type: 'REGISTER_USER_REJECTED', payload: err.response.data.message || err.message
+      type: 'REGISTER_USER_REJECTED', payload: err.response.data.message
     })
   }
 }
@@ -29,7 +28,6 @@ export const loadUser = () => async (dispatch) => {
     const { data } = await authaxios.get('/me');
     dispatch({ type: 'LOAD_USER_FULFILLED', payload: data.user });
     dispatch({ type: "RESET_SUCCESS" });
-
   }
   catch (err) {
     console.log(err)

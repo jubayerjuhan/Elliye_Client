@@ -4,7 +4,7 @@ import { styled } from "@mui/material/styles";
 import { AiOutlineArrowLeft } from "react-icons/ai";
 import { AiOutlineArrowRight } from "react-icons/ai";
 import "./pagination.css";
-
+import { useDispatch } from "react-redux";
 const List = styled("ul")({
   listStyle: "none",
   padding: 0,
@@ -12,10 +12,16 @@ const List = styled("ul")({
   display: "flex",
 });
 
-export default function UsePagination() {
+export default function Pagination({ totalPage, setFilter, filter }) {
   const { items } = usePagination({
-    count: 2,
+    count: totalPage,
   });
+
+  const currentPage = filter.page;
+
+  const handlePageClick = (page) => {
+    setFilter({ ...filter, page: page });
+  };
 
   return (
     <div className="pagination__container">
@@ -28,7 +34,12 @@ export default function UsePagination() {
               children = "…";
             } else if (type === "page") {
               children = (
-                <button type="button" className="pagination_number" {...item}>
+                <button
+                  type="button"
+                  className="pagination_number"
+                  {...item}
+                  onClick={() => handlePageClick(page)}
+                >
                   {page}
                 </button>
               );

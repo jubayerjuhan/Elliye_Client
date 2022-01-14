@@ -41,7 +41,9 @@ export const allProductsReducer = (state = {}, action) => {
         ...state,
         loading: false,
         success: true,
-        products: action.payload,
+        products: action.payload.products,
+        productsCount: action.payload.productsCount,
+        resultPerPage: action.payload.resultPerPage,
       }
     case "RESET_SUCCESS":
       return {

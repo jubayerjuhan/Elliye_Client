@@ -91,3 +91,9 @@
   margin: 1rem 0;
   font-size: 0.9rem;
 }
+
+.navlink__wrapper {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}

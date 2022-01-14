@@ -52,10 +52,9 @@ const Slidercomponent = () => {
           Shop Now <BsArrowRight />
         </button>
       </div>
-
       <div className="slider__image">
         <img
-          src="https://upload.wikimedia.org/wikipedia/commons/3/37/Vue_sur_le_Tanargue.JPG"
+          // src="https://upload.wikimedia.org/wikipedia/commons/3/37/Vue_sur_le_Tanargue.JPG"
           alt=""
         />
       </div>
