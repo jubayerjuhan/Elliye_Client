@@ -60,7 +60,6 @@ const Productlist = () => {
     dispatch({ type: "RESET_SUCCESS" });
   }
   const totalPage = Math.ceil(productsCount / resultPerPage);
-  console.log(totalPage, "tp");
 
   return (
     <>
