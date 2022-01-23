@@ -10,6 +10,8 @@ import Checkoutcomplete from "./PAGES/checkoutcomplete/Checkoutcomplete";
 import Signup from './PAGES/signup/Signup.jsx';
 import Login from './PAGES/login/Login.jsx';
 import Forgetpassword from './PAGES/forgetpassword/Forgotpassword.jsx';
+import AdminPanel from './PAGES/AdminPanel/AdminPanel'
+import ManageProduct from './PAGES/ManageProduct/ManageProduct.jsx'
 import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { loadUser } from './actions/userActions.js';
@@ -57,16 +59,19 @@ function App() {
           <Route path="/signup" element={<Signup />} />
           <Route path="/login" element={<Login />} />
           <Route path="/forgotten-password" element={<Forgetpassword />} />
+          <Route path="/manage-product" element={<ManageProduct />} />
 
           {/* private routes */}
           <Route element={<PrivateRoute />}>
             <Route path="/cart" element={<Shoppingcart />} />
             <Route path="/checkout-complete" element={<Checkoutcomplete />} />
-            <Route path="/addproduct" element={<Addproduct />} />
             <Route path="/orders" element={<Myorders />} />
+
+            {/* admin route */}
+            <Route path="/addproduct" element={<Addproduct />} />
+            <Route path="/admin/:name" element={<AdminPanel />} />
           </Route>
           <Route path="*" element={<Notfound />} />
-
         </Routes>
       </Router>
     </div>

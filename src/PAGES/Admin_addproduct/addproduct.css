@@ -15,4 +15,8 @@
   font-family: var(--font-family);
   resize: none;
 }
+
+.addproduct__container {
+  width: 100%;
+}
 /*# sourceMappingURL=addproduct.css.map */

@@ -23,9 +23,7 @@ const Navbar = () => {
   const navigate = useNavigate();
   const [isOpen, setOpen] = React.useState(false);
   const [keyword, setKeyword] = React.useState("");
-  console.log(isOpen);
-  const { isloggedin } = useSelector((state) => state.user);
-  console.log(isloggedin, "lgd");
+  const { isloggedin, user } = useSelector((state) => state.user);
   const [userbar, setUserbar] = React.useState(false);
 
   const handleLogout = () => {
@@ -103,6 +101,9 @@ const Navbar = () => {
           <div className="userbar__container fade-in">
             <Link to="/orders">Orders</Link>
             <Link to="/profile">Profile</Link>
+            {user.role === "admin" && (
+              <Link to="/admin/dashboard">Admin Panel</Link>
+            )}
             <button onClick={handleLogout}>Logout</button>
           </div>
         )}

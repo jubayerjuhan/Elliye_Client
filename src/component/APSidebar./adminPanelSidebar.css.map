@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAAA,AAAA,iBAAiB,CAAC;EAChB,UAAU,EAAE,iBAAiB;EAC7B,MAAM,EAAE,KAAK;CAUd;;AAZD,AAGE,iBAHe,CAGf,sBAAsB,CAAC;EACrB,OAAO,EAAE,SAAS;EAClB,KAAK,EAAE,KAAK;EACZ,UAAU,EAAE,oBAAoB;CAKjC;;AAXH,AAOI,iBAPa,CAGf,sBAAsB,AAInB,MAAM,CAAC;EACN,UAAU,EAAE,KAAK;EACjB,KAAK,EAAE,iBAAiB;CACzB",
+    "sources": [
+        "adminPanelSidebar.scss"
+    ],
+    "names": [],
+    "file": "adminPanelSidebar.css"
+}

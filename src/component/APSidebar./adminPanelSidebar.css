@@ -1,0 +1,17 @@
+.admin__panel-nav {
+  background: var(--theme-blue);
+  height: 100vh;
+}
+
+.admin__panel-nav .admin__panel-navlinks {
+  padding: 1rem 1rem;
+  color: white;
+  -webkit-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+}
+
+.admin__panel-nav .admin__panel-navlinks:hover {
+  background: white;
+  color: var(--theme-blue);
+}
+/*# sourceMappingURL=adminPanelSidebar.css.map */

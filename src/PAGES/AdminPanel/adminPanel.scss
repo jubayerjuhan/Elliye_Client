@@ -1,0 +1,16 @@
+.adminPanel__container {
+  display: flex;
+  gap: 1rem;
+
+  flex-wrap: wrap;
+}
+
+.admin__panel-gui {
+  width: 100%;
+  flex-basis: 80%;
+}
+
+.admin__panel-nav {
+  width: 100%;
+  flex-basis: 15%;
+}

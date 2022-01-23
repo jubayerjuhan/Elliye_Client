@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAAA,AAAA,sBAAsB,CAAC;EACrB,OAAO,EAAE,IAAI;EACb,GAAG,EAAE,IAAI;EAET,SAAS,EAAE,IAAI;CAChB;;AAED,AAAA,iBAAiB,CAAC;EAChB,KAAK,EAAE,IAAI;EACX,UAAU,EAAE,GAAG;CAChB;;AAED,AAAA,iBAAiB,CAAC;EAChB,KAAK,EAAE,IAAI;EACX,UAAU,EAAE,GAAG;CAChB",
+    "sources": [
+        "adminPanel.scss"
+    ],
+    "names": [],
+    "file": "adminPanel.css"
+}

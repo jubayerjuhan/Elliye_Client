@@ -30,6 +30,20 @@ export const getallProducts = (keyword = '', ratings = 0, gte = 1, lte = 26009, 
 }
 
 
+// admin get all product
+export const getAdminProduct = () => async (dispatch) => {
+  try {
+    dispatch({ type: "ALL_PRODUCTS_PENDING" })
+
+    const { data } = await instance.get('/admin/all-orders');
+    dispatch({ type: "ALL_PRODUCTS_FULFILLED", payload: data })
+  } catch (err) {
+    dispatch({ type: "ALL_PRODUCTS_REJECTED", error: err.message || err.response.data.message })
+
+  }
+}
+
+
 // get single products from the server
 
 export const getSingleProduct = (product_id) => async (dispatch) => {

@@ -78,7 +78,6 @@ const Addproduct = () => {
   return (
     <>
       {loading && <Spinner />}
-      <Navbar />
       <div className="addproduct__container section__padding">
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="input__group">

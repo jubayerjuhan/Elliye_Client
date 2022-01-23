@@ -1,0 +1,21 @@
+.adminPanel__container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  gap: 1rem;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
+
+.admin__panel-gui {
+  width: 100%;
+  -ms-flex-preferred-size: 80%;
+      flex-basis: 80%;
+}
+
+.admin__panel-nav {
+  width: 100%;
+  -ms-flex-preferred-size: 15%;
+      flex-basis: 15%;
+}
+/*# sourceMappingURL=adminPanel.css.map */
