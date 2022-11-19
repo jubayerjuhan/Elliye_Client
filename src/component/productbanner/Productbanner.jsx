@@ -6,7 +6,7 @@ const Productbanner = () => {
   return (
     <div className="productbanner section__padding">
       <div className="productbanner__grid1">
-        <Link to="/collections/casual">
+        <Link to="/products">
           <div className="productbanner__grid1_child color2">
             <p>Casual</p>
             <h1>Collections</h1>
@@ -17,7 +17,7 @@ const Productbanner = () => {
           </div>
         </Link>
 
-        <Link to="/collections/winter">
+        <Link to="/products">
           <div className="productbanner__grid1_child color3">
             <p>Winter</p>
             <h1>Collections</h1>
